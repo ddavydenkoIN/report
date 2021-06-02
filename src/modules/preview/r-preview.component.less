@@ -1,0 +1,70 @@
+:host {
+  width: 100%;
+  display: block;
+
+  .review {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    grid-gap: 10px;
+
+    &__field {
+      display: block;
+      margin-bottom: 10px;
+      font-family: serif;
+      font-weight: bold;
+      color: #909090;
+
+      span {
+        margin-top: 5px;
+        display: block;
+        color: black;
+        font-weight: normal;
+      }
+
+      &-price {
+        font-family: serif;
+        font-weight: bold;
+        color: #909090;
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: 1fr 2fr;
+        margin-bottom: 5px !important;
+
+        span {
+          color: black;
+          font-weight: normal;
+        }
+        &.result {
+          align-items: center;
+          font-size: 1.4em;
+          font-weight: bold !important;
+          span {
+            font-size: 1.4em;
+          }
+        }
+      }
+    }
+    &__left {
+      grid-row: 2;
+      grid-column: 1;
+      max-width: 150px;
+      img {
+        max-width: 150px;
+        margin-bottom: 15px;
+      }
+    }
+
+    &__right {
+      grid-row: 2;
+      grid-column: 2;
+    }
+  }
+
+  footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 15px;
+  }
+}

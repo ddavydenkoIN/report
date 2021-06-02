@@ -1,0 +1,27 @@
+:host {
+  .report-form {
+    height: auto;
+    background-color: white;
+
+    form > mat-form-field {
+      width: 100%;
+    }
+      &__image-calc {
+        grid-column: 1;
+        grid-row: 1;
+
+        overflow: hidden;
+
+        &-image {
+          width: 150px;
+          background-color: antiquewhite;
+          min-height: 100px;
+        }
+      }
+    footer {
+      display: flex;
+      justify-content: space-around;
+      padding-bottom: 15px;
+    }
+  }
+}

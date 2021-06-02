@@ -1,0 +1,95 @@
+<div class="report-form" #reportFormRef>
+    <input class="report-form__image-calc-input"
+           type="file"
+           #fileInput>
+    <img class="report-form__image-calc-image"
+         #image/>
+
+    <form [formGroup]="reportForm">
+
+      <mat-form-field>
+        <mat-label>Дата</mat-label>
+        <input matInput
+               autocomplete="off"
+               formControlName="date"
+               [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Модель</mat-label>
+        <textarea matInput
+                  formControlName="model"
+                  autocomplete="off"
+                  rows="2">
+        </textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Цвет</mat-label>
+        <input formControlName="color"
+               matInput
+               autocomplete="off"
+               type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Размер</mat-label>
+        <input formControlName="size"
+               matInput
+               autocomplete="off"
+               type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Данные отправителя</mat-label>
+        <textarea matInput
+                  formControlName="description"
+                  autocomplete="off"
+                  rows="2">
+        </textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ник</mat-label>
+        <input formControlName="nickname"
+               matInput
+               autocomplete="off"
+               type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Опт</mat-label>
+        <input formControlName="wholesale"
+               matInput
+               autocomplete="off"
+               type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Цена</mat-label>
+        <input formControlName="price"
+               matInput
+               autocomplete="off"
+               type="number">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Предоплата</mat-label>
+        <input formControlName="prepaid"
+               matInput
+               autocomplete="off"
+               type="number">
+      </mat-form-field>
+
+    </form>
+
+  <footer>
+    <button class="report-form__image-calc-button"
+            mat-raised-button
+            (click)="save()"
+            color="primary">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">check</mat-icon>
+    </button>
+
+    <button class="report-form__image-calc-button"
+            mat-raised-button
+            (click)="clear()"
+            color="secondary">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+    </button>
+  </footer>
+</div>
