@@ -46,6 +46,7 @@ export class RPreviewComponent implements OnChanges {
   takeAPhoto(): void {
     domtoimage.toPng(this.reportRef.nativeElement, { quality: 0.95 })
       .then((dataUrl: any) => {
+        console.log(dataUrl);
         let link = document.createElement('a');
         link.download = 'report.jpeg';
         link.href = dataUrl;
