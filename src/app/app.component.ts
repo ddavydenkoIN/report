@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { FormDataModel } from "../models/form-data.model";
 import { Form } from "@angular/forms";
+import { DateAdapter } from "@angular/material/core";
 
 @UntilDestroy()
 @Component({
@@ -12,6 +13,10 @@ import { Form } from "@angular/forms";
 export class AppComponent {
   formData: FormDataModel;
   tabIndex = 0;
+
+  constructor(private dateAdapter: DateAdapter<Date>) {
+    dateAdapter.setLocale("ru");
+  }
 
   onFormFilled(data: FormDataModel): void {
     this.formData = {
