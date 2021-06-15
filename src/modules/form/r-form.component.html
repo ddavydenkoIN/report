@@ -1,95 +1,123 @@
 <div class="report-form" #reportFormRef>
-    <input class="report-form__image-calc-input"
-           type="file"
-           #fileInput>
-    <img class="report-form__image-calc-image"
-         #image/>
 
-    <form [formGroup]="reportForm">
+  <form [formGroup]="reportForm">
 
-      <mat-form-field>
-        <mat-label>Дата</mat-label>
-        <input matInput
-               autocomplete="off"
-               formControlName="date"
-               [matDatepicker]="picker">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Производитель</mat-label>
-        <textarea matInput
-                  formControlName="model"
-                  autocomplete="off"
-                  rows="2">
-        </textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Цвет</mat-label>
-        <input formControlName="color"
-               matInput
-               autocomplete="off"
-               type="text">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Размер</mat-label>
-        <input formControlName="size"
-               matInput
-               autocomplete="off"
-               type="text">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Данные получателя</mat-label>
-        <textarea matInput
-                  formControlName="description"
-                  autocomplete="off"
-                  rows="2">
-        </textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Ник</mat-label>
-        <input formControlName="nickname"
-               matInput
-               autocomplete="off"
-               type="text">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Опт</mat-label>
-        <input formControlName="wholesale"
-               matInput
-               autocomplete="off"
-               type="number">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Розница</mat-label>
-        <input formControlName="price"
-               matInput
-               autocomplete="off"
-               type="number">
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Предоплата</mat-label>
-        <input formControlName="prepaid"
-               matInput
-               autocomplete="off"
-               type="number">
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Дата</mat-label>
+      <input matInput
+             autocomplete="off"
+             formControlName="date"
+             [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Данные получателя</mat-label>
+      <textarea matInput
+                formControlName="description"
+                autocomplete="off"
+                rows="2">
+          </textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ник</mat-label>
+      <input formControlName="nickname"
+             matInput
+             autocomplete="off"
+             type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Предоплата</mat-label>
+      <input formControlName="prepaid"
+             matInput
+             autocomplete="off"
+             type="number">
+    </mat-form-field>
 
+    <ng-container formArrayName="items">
+      <div class="report-form_item-group"
+           *ngFor="let _ of items.controls; index as i">
+        <mat-card [formGroupName]="i">
+          <app-image-loading (onLoaded)="setImageSrc($event, i)"></app-image-loading>
+          <mat-form-field>
+            <mat-label>Цвет</mat-label>
+            <input formControlName="color"
+                   matInput
+                   autocomplete="off"
+                   type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Размер</mat-label>
+            <input formControlName="size"
+                   matInput
+                   autocomplete="off"
+                   type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Производитель</mat-label>
+            <textarea matInput
+                      formControlName="model"
+                      autocomplete="off"
+                      rows="2">
+          </textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Опт</mat-label>
+            <input formControlName="wholesale"
+                   matInput
+                   autocomplete="off"
+                   type="number">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Розница</mat-label>
+            <input formControlName="price"
+                   matInput
+                   autocomplete="off"
+                   type="number">
+          </mat-form-field>
+          <div class="report-form__button-group">
+            <button mat-raised-button
+                    (click)="deleteFromList(i)"
+                    color="secondary">
+              <mat-icon aria-hidden="false">delete</mat-icon>
+              Удалить
+            </button>
+            <button mat-raised-button
+                    (click)="resetItem(i)"
+                    color="secondary">
+              <mat-icon aria-hidden="false">refresh</mat-icon>
+              Очистить
+            </button>
+          </div>
+
+        </mat-card>
+      </div>
+
+      <button class="report-form__add-item-btn"
+              mat-raised-button
+              (click)="addItem()"
+              color="secondary">
+        <mat-icon aria-hidden="false">add</mat-icon>
+        Добавить модель
+      </button>
+    </ng-container>
     </form>
 
   <footer>
     <button class="report-form__image-calc-button"
             mat-raised-button
-            (click)="save()"
-            color="primary">
-      <mat-icon aria-hidden="false" aria-label="Example home icon">check</mat-icon>
+            (click)="clearForm()"
+            color="secondary">
+      <mat-icon style="color: red" aria-hidden="false" aria-label="Example home icon">refresh</mat-icon>
+      Очистить всё
     </button>
 
     <button class="report-form__image-calc-button"
             mat-raised-button
-            (click)="clear()"
-            color="secondary">
-      <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+            (click)="save()"
+            color="primary">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">check</mat-icon>
+      Готово
     </button>
   </footer>
 </div>

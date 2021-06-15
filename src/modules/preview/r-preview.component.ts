@@ -18,10 +18,7 @@ import domtoimage from "dom-to-image";
   templateUrl: './r-preview.component.html',
   styleUrls: ['./r-preview.component.less']
 })
-export class RPreviewComponent implements OnChanges {
-  @ViewChild('imageRef')
-  imageRef: ElementRef<any>;
-
+export class RPreviewComponent {
   @ViewChild('reportRef')
   reportRef: ElementRef<any>;
 
@@ -30,14 +27,6 @@ export class RPreviewComponent implements OnChanges {
 
   @Output()
   onBackClicked = new EventEmitter<any>();
-  constructor(private renderer: Renderer2) { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['formData'].currentValue && changes['formData'].currentValue !== changes['formData'].previousValue) {
-      this.imageRef.nativeElement.src = this.formData.imageUrl;
-      console.log(this.formData);
-    }
-  }
 
   return(): void {
     this.onBackClicked.emit();

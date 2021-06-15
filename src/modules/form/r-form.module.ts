@@ -11,6 +11,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
+import { ImageLoadingModule } from "../image-loading/image-loading.module";
+import { MatCardModule } from "@angular/material/card";
 
 
 
@@ -30,6 +32,8 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ImageLoadingModule,
+    MatCardModule
   ],
   exports: [
     RFormComponent

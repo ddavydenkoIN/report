@@ -3,12 +3,14 @@
 
   .review {
     background-color: white;
-    display: grid;
-    grid-template-columns: 3fr 4fr;
-    grid-gap: 10px;
     padding: 5px;
     margin: 0 auto;
     font-size: 0.9em;
+
+    &-date {
+      margin: 0 auto;
+      text-align: center;
+    }
 
     &__field {
       display: block;
@@ -46,22 +48,6 @@
           }
         }
       }
-    }
-    &__left {
-      grid-row: 2;
-      grid-column: 1;
-      width: 100%;
-      img {
-        width: 100%;
-        margin-bottom: 15px;
-      }
-    }
-
-    &__right {
-      background-color: white;
-      grid-row: 2;
-      grid-column: 2;
-      max-width: 220px;
     }
   }
 

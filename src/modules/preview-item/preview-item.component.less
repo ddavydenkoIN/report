@@ -1,0 +1,28 @@
+.preview-item {
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  margin: 10px auto;
+
+  &__field {
+    margin-bottom: 10px;
+
+    &-name {
+      font-family: serif;
+      font-weight: bold;
+      color: #909090;
+      margin-right: 10px;
+    }
+
+    &-value {
+      color: black;
+      font-weight: normal;
+    }
+  }
+  img {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+  }
+}

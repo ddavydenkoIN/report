@@ -1,0 +1,24 @@
+<mat-card class="preview-item">
+  <img [src]="data?.imgSrc">
+
+  <div class="preview-item__fields">
+    <div class="preview-item__field">
+      <div class="preview-item__field-name">Производитель:</div>
+      <div class="preview-item__field-value">{{data?.model}}</div>
+    </div>
+    <div class="preview-item__field">
+      <div class="preview-item__field-name">Цвет:</div>
+      <div class="preview-item__field-value">{{data?.color}}</div>
+    </div>
+
+    <div class="preview-item__field">
+      <div class="preview-item__field-name">Размер:</div>
+      <div class="preview-item__field-value">{{data?.size}}</div>
+    </div>
+
+    <div class="preview-item__field">
+      <div class="preview-item__field-name">Опт:</div>
+      <div class="preview-item__field-value">{{data?.wholesale}}</div>
+    </div>
+  </div>
+</mat-card>

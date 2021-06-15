@@ -7,18 +7,33 @@
     form > mat-form-field {
       width: 100%;
     }
-      &__image-calc {
-        grid-column: 1;
-        grid-row: 1;
 
-        overflow: hidden;
+    &::ng-deep {
+      mat-card {
+        margin-bottom: 20px;
+      }
+    }
+    &__add-item-btn {
+      margin: 0 auto 20px auto;
+      display: block;
+      width: 90vw;
+    }
 
-        &-image {
-          width: 160px;
-          background-color: antiquewhite;
-          min-height: 100px;
+    &__button-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &_item-group {
+      width: 100%;
+
+      &::ng-deep {
+        mat-form-field {
+          width: 100%;
         }
       }
+    }
+
     footer {
       display: flex;
       justify-content: space-around;

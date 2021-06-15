@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
 import { UntilDestroy } from "@ngneat/until-destroy";
 
 @UntilDestroy()
@@ -22,50 +22,70 @@ export class RFormComponent implements OnInit {
   @Output()
   onFormFilled = new EventEmitter<any>();
 
-  title = 'report';
   result: number | null;
   reportForm: FormGroup;
-  imageUrl: string;
+  items: FormArray;
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-
     this.reportForm = this.fb.group({
       date: '',
+      description: '',
+      nickname: '',
+      prepaid: '',
+
+      items: this.fb.array([
+        this.createFormGroupForItem()
+      ])
+    });
+
+    this.items = this.reportForm.get('items') as FormArray;
+  }
+
+  createFormGroupForItem(): FormGroup {
+    return this.fb.group({
       model: '',
       color: '',
       size: '',
-      description: '',
-      nickname: '',
-      price: '',
-      prepaid: '',
       wholesale: '',
-    });
+      imgSrc: '',
+      price: '',
+    })
+  }
 
-    this.fileInput.nativeElement.onchange = (evt: any) => {
-      let files = evt.target.files; // FileList object
-      let file = files[0];
-      let reader = new FileReader();
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(file);
-      reader.onloadend = (event: any) => {
-        this.image.nativeElement.src = event.target.result;
-        this.imageUrl = event.target.result;
-      }
+  deleteFromList(index: number): void {
+    if (confirm("Прям точно-точно удалить?")) {
+      this.items.controls.splice(index, 1);
     }
   }
 
-  clear(): void {
-    this.image.nativeElement.src = "";
-    this.reportForm.reset();
+  resetItem(index: number): void {
+    if (confirm("Прям точно-точно очистить?")) {
+      this.items.controls[index].reset();
+    }
+  }
+
+  addItem(): void {
+    (this.reportForm.get('items') as FormArray).push(this.createFormGroupForItem());
+  }
+
+  clearForm(): void {
+    if (confirm("Прям точно-точно очистить всю форму?")) {
+      this.reportForm.reset();
+    }
   }
 
   save(): void {
     this.onFormFilled.emit({
       ...this.reportForm.value,
-      imageUrl: this.imageUrl,
+    });
+  }
+
+  setImageSrc(src: string, index: number): void {
+    (this.items.controls[index] as FormGroup).patchValue({
+      imgSrc: src
     });
   }
 }

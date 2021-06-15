@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RPreviewComponent } from './r-preview.component';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { PreviewItemModule } from "../preview-item/preview-item.module";
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { MatIconModule } from "@angular/material/icon";
   imports: [
     CommonModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    PreviewItemModule
   ],
   exports: [
     RPreviewComponent

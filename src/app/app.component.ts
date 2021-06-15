@@ -1,7 +1,6 @@
-import { Component } from "@angular/core";
+import { ChangeDetectorRef, Component } from "@angular/core";
 import { UntilDestroy } from "@ngneat/until-destroy";
 import { FormDataModel } from "../models/form-data.model";
-import { Form } from "@angular/forms";
 import { DateAdapter } from "@angular/material/core";
 
 @UntilDestroy()
@@ -14,16 +13,22 @@ export class AppComponent {
   formData: FormDataModel;
   tabIndex = 0;
 
-  constructor(private dateAdapter: DateAdapter<Date>) {
+  constructor(private dateAdapter: DateAdapter<Date>,
+              private cdr: ChangeDetectorRef) {
     dateAdapter.setLocale("ru");
   }
 
   onFormFilled(data: FormDataModel): void {
+    const totalPrice = data.items.reduce((acc, item) => {
+      return acc + item.price;
+    }, 0)
     this.formData = {
       ...data,
-      rest: data.price - data.prepaid
+      totalPrice: totalPrice,
+      rest: (data.totalPrice || 0) - data.prepaid
     };
     this.tabIndex = 1;
+    this.cdr.detectChanges();
   }
 
   returnToForm(): void {

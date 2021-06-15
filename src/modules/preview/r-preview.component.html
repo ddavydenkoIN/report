@@ -1,62 +1,38 @@
 
 <div class="review" #reportRef>
-  <div class="review__left">
-    <img #imageRef>
-    <label class="review__field-price "
-           for="wholesale">
-      Опт:
-      <span id="wholesale">{{formData?.wholesale}}</span>
-    </label>
-    <label class="review__field-price "
-           for="price">
-      Розница:
-      <span id="price">{{formData?.price}}</span>
-    </label>
-    <label class="review__field-price "
-           for="prepaid">
-      Предоплата:
-      <span id="prepaid">{{formData?.prepaid}}</span>
-    </label>
-    <label class="review__field-price result"
-           [ngStyle]="{'color': formData?.rest === 0 ? 'green' : 'red', 'font-size': '1em'}"
-           for="rest">
-      НАЛОЖКА:
-      <span id="rest" [ngStyle]="{'color': formData?.rest === 0 ? 'green' : 'red'}">{{formData?.rest}}</span>
-    </label>
-  </div>
-  <div class="review__right">
-    <label class="review__field"
-           for="date">
-      Дата
-      <span id="date">{{formData?.date | date}}</span>
-    </label>
-    <label class="review__field"
-           for="model">
-      Производитель
-      <span id="model">{{formData?.model}}</span>
-    </label>
-    <label class="review__field"
-           for="color">
-      Цвет
-      <span id="color">{{formData?.color}}</span>
-    </label>
-    <label class="review__field"
-           for="size">
-      Размер
-      <span id="size">{{formData?.size}}</span>
-    </label>
-    <label class="review__field"
-           for="description">
-      Данные получателя
-      <span id="description">{{formData?.description}}</span>
-    </label>
-    <label class="review__field"
-           for="nickname">
-      Ник
-      <span id="nickname">{{formData?.nickname}}</span>
-    </label>
-  </div>
+  <div class="review__date">{{formData?.date | date}}</div>
 
+  <ng-container *ngFor="let item of formData?.items">
+    <r-preview-item [data]="item"></r-preview-item>
+  </ng-container>
+
+  <label class="review__field"
+         for="description">
+    Данные получателя:
+    <span id="description">{{formData?.description}}</span>
+  </label>
+  <label class="review__field"
+         for="nickname">
+    Ник:
+    <span id="nickname">{{formData?.nickname}}</span>
+  </label>
+
+  <label class="review__field-price "
+         for="price">
+    Розница:
+    <span id="price">{{formData?.totalPrice}}</span>
+  </label>
+  <label class="review__field-price "
+         for="prepaid">
+    Предоплата:
+    <span id="prepaid">{{formData?.prepaid}}</span>
+  </label>
+  <label class="review__field-price result"
+         [ngStyle]="{'color': formData?.rest === 0 ? 'green' : 'red', 'font-size': '1em'}"
+         for="rest">
+    НАЛОЖКА:
+    <span id="rest" [ngStyle]="{'color': formData?.rest === 0 ? 'green' : 'red'}">{{formData?.rest}}</span>
+  </label>
 </div>
 
 <footer>
