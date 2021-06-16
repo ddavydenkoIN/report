@@ -25,7 +25,7 @@ export class AppComponent {
     this.formData = {
       ...data,
       totalPrice: totalPrice,
-      rest: (data.totalPrice || 0) - data.prepaid
+      rest: totalPrice - data.prepaid
     };
     this.tabIndex = 1;
     this.cdr.detectChanges();

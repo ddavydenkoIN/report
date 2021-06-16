@@ -8,7 +8,16 @@
     font-size: 0.9em;
 
     &__date {
-      margin: 10px 0 0 43%;
+      display: grid;
+      grid-template-columns: 3fr 4fr;
+      font-family: serif;
+      font-weight: bold;
+      color: #909090;
+      span {
+        display: block;
+        color: black;
+        font-weight: normal;
+      }
     }
 
     &__field {

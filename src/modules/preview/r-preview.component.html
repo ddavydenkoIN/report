@@ -1,6 +1,10 @@
 
 <div class="review" #reportRef>
-  <div class="review__date">{{formData?.date | date}}</div>
+  <label class="review__date"
+         for="description">
+    Дата:
+    <span id="description">{{formData?.date | date}}</span>
+  </label>
 
   <ng-container *ngFor="let item of formData?.items">
     <r-preview-item [data]="item"></r-preview-item>
