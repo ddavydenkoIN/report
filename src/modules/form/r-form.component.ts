@@ -57,7 +57,6 @@ export class RFormComponent implements OnInit {
 
   deleteFromList(index: number): void {
     if (confirm("Прям точно-точно удалить?")) {
-      this.items.controls.splice(index, 1);
       (this.reportForm.get('items') as FormArray).removeAt(index);
     }
   }
